@@ -164,6 +164,8 @@ public class Boss3Manager : MonoBehaviour
         yield return new WaitForSeconds(3);
         GameManager.gameManager.FinalFade();
         yield return new WaitForSeconds(2);
+        GameManager.gameManager.ChangeCursor(false);
+        Cursor.visible = false;
         player.SetActive(false);
         yield return new WaitForSeconds(4);
         

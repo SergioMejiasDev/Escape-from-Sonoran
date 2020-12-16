@@ -15,9 +15,14 @@ public class GameManager : MonoBehaviour
     [Header("Menu Panels")]
     [SerializeField] GameObject[] panels = null;
 
+    [Header("CustomCursor")]
+    [SerializeField] Texture2D aimCursor = null;
+
+    [Header("Language")]
+    public int activeLanguage;
+
     [Header ("Pause")]
     [SerializeField] GameObject panelPause = null;
-    [SerializeField] GameObject AIM = null;
 
     [Header("Game Over")]
     [SerializeField] GameObject player = null;
@@ -97,14 +102,14 @@ public class GameManager : MonoBehaviour
     /// Function that we call from the main menu to open (or close) panels.
     /// </summary>
     /// <param name="panelToOpen">It has a numerical value depending on the panel you want to open. The others will close.</param>
-    public void OpenPanel(int panelToOpen)
+    public void OpenPanel(GameObject panelToOpen)
     {
         for (int i = 0; i < panels.Length; i++)
         {
             panels[i].SetActive(false);
         }
 
-        panels[panelToOpen].SetActive(true);
+        panelToOpen.SetActive(true);
     }
 
     /// <summary>
@@ -115,7 +120,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit(); //El juego se cierra.
+        Application.Quit();
 #endif
     }
 
@@ -130,14 +135,29 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Function that is responsible for alternating between the original cursor and the AIM.
+    /// </summary>
+    /// <param name="customCursor">True if we want the AIM to appear, false if we want the normal cursor.</param>
+    public void ChangeCursor(bool customCursor)
+    {
+        if (customCursor)
+        {
+            Cursor.SetCursor(aimCursor, new Vector2(25, 25) , CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+    }
+
+    /// <summary>
     /// Function that is responsible for pausing the game.
     /// </summary>
     public void PauseGame()
     {
         Time.timeScale = 0;
         panelPause.SetActive(true);
-        AIM.SetActive(false);
-        Cursor.visible = true;
+        ChangeCursor(false);
     }
 
     /// <summary>
@@ -147,8 +167,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         panelPause.SetActive(false);
-        AIM.SetActive(true);
-        Cursor.visible = false;
+        ChangeCursor(true);
     }
 
     /// <summary>
@@ -167,8 +186,7 @@ public class GameManager : MonoBehaviour
     public void StartDialogue(int dialogue)
     {
         dialoguePanel.SetActive(true);
-        AIM.SetActive(false);
-        Cursor.visible = true;
+        ChangeCursor(false);
         
         for (int i = 0; i < dialogues.Length; i++)
         {
@@ -184,8 +202,7 @@ public class GameManager : MonoBehaviour
     public void CloseDialogue()
     {
         dialoguePanel.SetActive(false);
-        AIM.SetActive(true);
-        Cursor.visible = false;
+        ChangeCursor(true);
     }
 
     /// <summary>
@@ -194,8 +211,8 @@ public class GameManager : MonoBehaviour
     public void StartLevel()
     {
         canSkip = false;
-        Cursor.visible = false;
-        AIM.SetActive(true);
+        Cursor.visible = true;
+        ChangeCursor(true);
         ActivateMusic();
         InitialFade();
         TextFading();
@@ -282,7 +299,7 @@ public class GameManager : MonoBehaviour
     IEnumerator Narrative()
     {
         StartCoroutine(SkipNarrative());
-        AIM.SetActive(false);
+        Cursor.visible = false;
         ambientMusic.clip = transitionMusic;
         ambientMusic.volume = 1;
         ambientMusic.Play();
@@ -382,7 +399,7 @@ public class GameManager : MonoBehaviour
         gameOver.SetActive(true);
         
         StartCoroutine(FadeOut(1, 2));
-        AIM.SetActive(false);
+        Cursor.visible = false;
 
 
         Color gameOverColor = gameOverText.color;
@@ -398,6 +415,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(4);
         gameOverPanel.SetActive(true);
+        ChangeCursor(false);
         Cursor.visible = true;
         if (finalTrigger != null)
         {
@@ -420,8 +438,7 @@ public class GameManager : MonoBehaviour
     IEnumerator ContinueGame()
     {
         Time.timeScale = 1;
-        Cursor.visible = false;
-        AIM.SetActive(true);
+        ChangeCursor(true);
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("BulletEnemy");
         for (int i = 0; i < bullets.Length; i++)
         {

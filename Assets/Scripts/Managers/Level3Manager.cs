@@ -18,7 +18,7 @@ public class Level3Manager : MonoBehaviour
     void Start()
     {
         level3Manager = this;
-        Cursor.visible = false;
+        GameManager.gameManager.ChangeCursor(true);
         GameManager.gameManager.InitialFade();
         GameManager.gameManager.TextFading();
         fadeBackgroundImage = fadeBackgroundPanel.GetComponent<SpriteRenderer>();

@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [Header("Shoot")]
     float timeLastShoot;
     [SerializeField] float cadency = 0;
-    Vector3 mousePos;
+    public Vector3 mousePos;
     GameObject bullet;
     Transform arm;
     public GameObject armLeft;

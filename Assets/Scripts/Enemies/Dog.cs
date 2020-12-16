@@ -20,7 +20,7 @@ public class Dog : MonoBehaviour
     [SerializeField] Transform leftCannon = null;
     [SerializeField] Transform rightCannon = null;
     float timeLastShoot;
-    [SerializeField] float cadency = 1;
+    [SerializeField] float cadency = 1.5f;
 
     [Header("Health")]
     [SerializeField] float maxHealth = 4; 

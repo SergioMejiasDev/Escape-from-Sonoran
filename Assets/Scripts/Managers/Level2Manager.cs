@@ -33,7 +33,7 @@ public class Level2Manager : MonoBehaviour
     void Start()
     {
         level2Manager = this;
-        Cursor.visible = false;
+        GameManager.gameManager.ChangeCursor(true);
         GameManager.gameManager.InitialFade();
         GameManager.gameManager.TextFading();
         elevatorAnim = elevator.GetComponent<Animator>();

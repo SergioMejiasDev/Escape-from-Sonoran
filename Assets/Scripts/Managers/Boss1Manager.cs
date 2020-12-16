@@ -85,7 +85,7 @@ public class Boss1Manager : MonoBehaviour
         yield return new WaitForSeconds(2);
         player.SetActive(false);
         yield return new WaitForSeconds(3);
-        Cursor.visible = true;
+        GameManager.gameManager.ChangeCursor(false);
         gunPanel.SetActive(true);
     }
 

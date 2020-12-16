@@ -3,12 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Enemy generator script in the main menu.
+/// Script that controls the main functions of the main menu.
 /// </summary>
-public class GeneratorMenu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     [SerializeField] GameObject enemy = null;
     [SerializeField] Transform generationPoint = null;
+    [SerializeField] GameObject panelLanguage, panelMenu;
+
+    private void Awake()
+    {
+        if (PlayerPrefs.HasKey("ActiveLanguage"))
+        {
+            panelMenu.SetActive(true);
+        }
+        else
+        {
+            panelLanguage.SetActive(true);
+        }
+    }
 
     void Start()
     {
