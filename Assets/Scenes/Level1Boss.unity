@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 9668754}
   - component: {fileID: 9668753}
   - component: {fileID: 9668755}
+  - component: {fileID: 9668756}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -265,6 +266,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &9668756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9668751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: Continue
+  spanish: Continuar
+  menuText: 0
 --- !u!224 &37636101 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4660759833448571496, guid: ceaadc0d96c7a3f4bbb37f0d2a54b97a,
@@ -2694,6 +2710,7 @@ GameObject:
   - component: {fileID: 1422003758}
   - component: {fileID: 1422003760}
   - component: {fileID: 1422003759}
+  - component: {fileID: 1422003761}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2761,6 +2778,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422003757}
   m_CullTransparentMesh: 0
+--- !u!114 &1422003761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422003757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: You have unlocked a new weapon
+  spanish: Has desbloqueado una nueva arma
+  menuText: 0
 --- !u!1 &1450046219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8107471333353493720, guid: 243f4a5ed337a2f439975ed2f94774cb,
