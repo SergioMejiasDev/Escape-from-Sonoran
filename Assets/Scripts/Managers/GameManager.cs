@@ -1,11 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Script from which most of the main functions of the game are managed.
+/// Class from which most of the main functions of the game are managed.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
@@ -65,15 +64,18 @@ public class GameManager : MonoBehaviour
         {
             gameOverText = gameOver.GetComponent<Text>();
         }
+
         if (fadePanel != null)
         {
             fadeImage = fadePanel.GetComponent<Image>();
             fadePanel.SetActive(true);
         }
+
         if (levelTextPanel != null)
         {
             levelText = levelTextPanel.GetComponent<Text>();
         }
+
         if (player != null)
         {
             respawnPosition = player.transform.position;
@@ -87,11 +89,14 @@ public class GameManager : MonoBehaviour
             if (Input.GetButtonDown("Cancel"))
             {
                 StopCoroutine(Narrative());
+
                 StopCoroutine(SkipNarrative());
+
                 for (int i = 0; i < narrativeTexts.Length; i++)
                 {
                     narrativeTexts[i].enabled = false;
                 }
+
                 ambientMusic.Stop();
                 StartLevel();
             }
@@ -130,8 +135,9 @@ public class GameManager : MonoBehaviour
     /// <param name="buildIndex">The scene we want to load.</param>
     public void LoadScene(int buildIndex)
     {
-        SceneManager.LoadScene(buildIndex);
         Time.timeScale = 1;
+
+        SceneManager.LoadScene(buildIndex);
     }
 
     /// <summary>
@@ -144,6 +150,7 @@ public class GameManager : MonoBehaviour
         {
             Cursor.SetCursor(aimCursor, new Vector2(25, 25) , CursorMode.Auto);
         }
+
         else
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
@@ -186,6 +193,7 @@ public class GameManager : MonoBehaviour
     public void StartDialogue(int dialogue)
     {
         dialoguePanel.SetActive(true);
+
         ChangeCursor(false);
         
         for (int i = 0; i < dialogues.Length; i++)
@@ -267,6 +275,7 @@ public class GameManager : MonoBehaviour
     public void InitialFade()
     {
         StartCoroutine(FadeIn(2, 0));
+
         if (activableObjects != null)
         {
             for (int i = 0; i < activableObjects.Length; i++)
@@ -316,6 +325,7 @@ public class GameManager : MonoBehaviour
                 {
                     yield break;
                 }
+
                 alphaValue = imageColor.a + (0.5f * Time.deltaTime);
                 imageColor = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
                 narrativeTexts[i].color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
@@ -330,6 +340,7 @@ public class GameManager : MonoBehaviour
                 {
                     yield break;
                 }
+
                 alphaValue = imageColor.a - (0.5f * Time.deltaTime);
                 imageColor = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
                 narrativeTexts[i].color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
@@ -349,6 +360,7 @@ public class GameManager : MonoBehaviour
                 {
                     yield break;
                 }
+
                 alphaValue = imageColor.a + (0.5f * Time.deltaTime);
                 imageColor = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
                 logo.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
@@ -363,6 +375,7 @@ public class GameManager : MonoBehaviour
                 {
                     yield break;
                 }
+
                 alphaValue = imageColor.a - (0.5f * Time.deltaTime);
                 imageColor = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
                 logo.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
@@ -376,6 +389,7 @@ public class GameManager : MonoBehaviour
             {
                 yield break;
             }
+
             ambientMusic.volume -= Time.deltaTime / 2;
             yield return null;
         }
@@ -401,7 +415,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeOut(1, 2));
         Cursor.visible = false;
 
-
         Color gameOverColor = gameOverText.color;
         float alphaValue;
 
@@ -417,9 +430,10 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         ChangeCursor(false);
         Cursor.visible = true;
+
         if (finalTrigger != null)
         {
-            if (finalTrigger.activeSelf == false)
+            if (!finalTrigger.activeSelf)
             {
                 GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
                 for (int i = 0; i < enemies.Length; i++)
@@ -428,6 +442,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
         Time.timeScale = 0;
     }
 
@@ -440,10 +455,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         ChangeCursor(true);
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("BulletEnemy");
+
         for (int i = 0; i < bullets.Length; i++)
         {
             bullets[i].SetActive(false);
         }
+
         gameOverPanel.SetActive(false);
         Color gameOverColor = gameOverText.color;
         float alphaValue;
@@ -462,6 +479,7 @@ public class GameManager : MonoBehaviour
         Camera.main.GetComponent<CameraMovement>().enabled = true;
         yield return new WaitForSeconds(2);
         player.GetComponent<PlayerHealth>().RestorePlayer();
+
         if (finalTrigger != null)
         {
             finalTrigger.SetActive(true);

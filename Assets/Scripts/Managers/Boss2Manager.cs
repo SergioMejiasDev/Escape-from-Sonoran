@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script that controls the specific functions of the second boss scene.
+/// Class that controls the specific functions of the second boss scene.
 /// </summary>
 public class Boss2Manager : MonoBehaviour
 {
@@ -19,14 +18,14 @@ public class Boss2Manager : MonoBehaviour
 
     [Header("Characters")]
     [SerializeField] GameObject player = null;
+    [SerializeField] Player playerClass = null;
     [SerializeField] GameObject enemy = null;
+    [SerializeField] Dog enemyClass = null;
     #endregion
 
     void Start()
     {
         boss2Manager = this;
-        player.GetComponent<Player>().enabled = false;
-        enemy.GetComponent<Dog>().enabled = false;
         GameManager.gameManager.InitialFade();
         GameManager.gameManager.StartDialogue(0);
     }
@@ -38,8 +37,8 @@ public class Boss2Manager : MonoBehaviour
     {
         GameManager.gameManager.CloseDialogue();
         GameManager.gameManager.ActivateMusic();
-        player.GetComponent<Player>().enabled = true;
-        enemy.GetComponent<Dog>().enabled = true;
+        playerClass.enabled = true;
+        enemyClass.enabled = true;
         RespawnTNT();
         StartCoroutine(SpawnBattery());
     }
@@ -57,15 +56,14 @@ public class Boss2Manager : MonoBehaviour
     /// </summary>
     public void RespawnTNT()
     {
-        float randomNumber = Random.value;
-
-        if (randomNumber < 0.5f)
+        if (Random.value < 0.5f)
         {
-            Instantiate(tnt, spawnPointLeft.position, spawnPointLeft.rotation);
+            Instantiate(tnt, spawnPointLeft.position, Quaternion.identity);
         }
+
         else
         {
-            Instantiate(tnt, spawnPointRight.position, spawnPointRight.rotation);
+            Instantiate(tnt, spawnPointRight.position, Quaternion.identity);
         }
     }
 
@@ -78,10 +76,12 @@ public class Boss2Manager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(50);
+
             if (enemy != null)
             {
-                Instantiate(battery, batterySpawnPoint.position, batterySpawnPoint.rotation);
+                Instantiate(battery, batterySpawnPoint.position, Quaternion.identity);
             }
+
             else
             {
                 yield break;

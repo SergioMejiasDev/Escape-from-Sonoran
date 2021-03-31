@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// Script that takes care of the horizontal movement of the background in the last battle.
+/// Class that takes care of the horizontal movement of the background in the last battle.
 /// </summary>
 public class BackgroundMovement : MonoBehaviour
 {

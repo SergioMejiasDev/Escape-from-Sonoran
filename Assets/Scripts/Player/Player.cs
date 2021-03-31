@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 /// <summary>
-/// Script with the movement and attack functions assigned to the player when he goes on foot (chapters 1 and 2).
+/// Class with the movement and attack functions assigned to the player when he goes on foot (chapters 1 and 2).
 /// </summary>
 public class Player : MonoBehaviour
 {
@@ -13,35 +10,24 @@ public class Player : MonoBehaviour
     [SerializeField] float speed = 4;
     [SerializeField] float jump = 8.0f;
     [SerializeField] LayerMask groundLayerMask = 0;
+    public bool inPlatform = false;
 
     [Header("Shoot")]
     float timeLastShoot;
     [SerializeField] float cadency = 0;
-    public Vector3 mousePos;
-    GameObject bullet;
-    Transform arm;
-    public GameObject armLeft;
-    public GameObject armRight;
-    [SerializeField] Transform shootPointLeft = null;
-    [SerializeField] Transform shootPointRight = null;
+    public GameObject arm;
+    [SerializeField] Transform shootPoint = null;
 
     [Header("Components")]
-    BoxCollider2D boxCollider2D;
-    Rigidbody2D rb;
-    Animator anim;
-    SpriteRenderer sr;
+    [SerializeField] Rigidbody2D rb = null;
+    [SerializeField] Animator anim = null;
     Camera mainCamera;
     #endregion
 
     void Start()
     {
         mainCamera = Camera.main;
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
-        armLeft.SetActive(false);
-        armRight.SetActive(true);
+        arm.SetActive(true);
     }
 
     void Update()
@@ -52,9 +38,9 @@ public class Player : MonoBehaviour
         {
             Movement(h);
 
-            Animation(h, IsGrounded());
+            Animation(h);
 
-            if ((Input.GetButtonDown("Jump")) && IsGrounded() == true)
+            if ((Input.GetButtonDown("Jump")) && IsGrounded())
             {
                 Jump();
             }
@@ -71,30 +57,24 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Function we call when a collision occurs.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("MovingPlatform"))
         {
             transform.parent = collision.transform;
+            inPlatform = true;
         }
     }
 
-    /// <summary>
-    /// Function called when the player is having a constant collision with an object.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("MovingPlatform"))
         {
-            if ((collision.gameObject.GetComponent<MovingPlatform>().isVertical == true) && (collision.gameObject.GetComponent<MovingPlatform>().direction == -1))
+            if ((collision.gameObject.GetComponent<MovingPlatform>().isVertical) && (collision.gameObject.GetComponent<MovingPlatform>().direction == -1))
             {
                 rb.gravityScale = 0;
             }
+
             else
             {
                 rb.gravityScale = 1;
@@ -102,23 +82,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Function that we call when the player leaves a collision.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("MovingPlatform"))
         {
+            inPlatform = false;
             transform.SetParent(null);
             rb.gravityScale = 1;
         }
     }
 
-    /// <summary>
-    /// Function that we call when the player enters a trigger collision.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "SpawnTrigger1")
@@ -140,8 +113,10 @@ public class Player : MonoBehaviour
     /// <returns>True if the raycast touches an object with the specified mask, false if it doesn't.</returns>
     private bool IsGrounded()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size - new Vector3(0.15f, 0, 0), 0f, Vector2.down, 0.1f, groundLayerMask);
-        return raycastHit.collider != null;
+        RaycastHit2D hit1 = Physics2D.Raycast(new Vector2(transform.position.x - 0.8f, transform.position.y - 1.4f), Vector2.down, 0.2f, groundLayerMask);
+        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(transform.position.x + 0.8f, transform.position.y - 1.4f), Vector2.down, 0.2f, groundLayerMask);
+        
+        return hit1 || hit2;
     }
 
     /// <summary>
@@ -150,7 +125,7 @@ public class Player : MonoBehaviour
     /// <param name="h">A value returned by the GetAxisRaw and that has a value of -1, 0, or 1.</param>
     void Movement(float h)
     {
-        mousePos = Input.mousePosition;
+        Vector3 mousePos = Input.mousePosition;
         Vector3 cameraPosition = mainCamera.WorldToScreenPoint(transform.position);
 
         mousePos.x = mousePos.x - cameraPosition.x;
@@ -160,32 +135,49 @@ public class Player : MonoBehaviour
 
         if (mousePos.x >= 0)
         {
-            sr.flipX = false;
-            armLeft.SetActive(false);
-            armRight.SetActive(true);
-            arm = armRight.transform;
-        }
-        else if (mousePos.x < 0)
-        {
-            sr.flipX = true;
-            armLeft.SetActive(true);
-            armRight.SetActive(false);
-            arm = armLeft.transform;
+            if (!inPlatform)
+            {
+                transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+                arm.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+
+            else
+            {
+                transform.localScale = new Vector3(0.33f, 0.33f, 1f);
+                arm.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+
+            float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+            arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        arm.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        else if (mousePos.x < 0)
+        {
+            if (!inPlatform)
+            {
+                transform.localScale = new Vector3(-0.5f, 0.5f, 1f);
+                arm.transform.localScale = new Vector3(-1f, -1f, 1f);
+            }
+
+            else
+            {
+                transform.localScale = new Vector3(-0.33f, 0.33f, 1f);
+                arm.transform.localScale = new Vector3(-1f, -1f, 1f);
+            }
+
+            float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+            arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     /// <summary>
     /// Function that makes animations run.
     /// </summary>
     /// <param name="h">A value returned by the GetAxisRaw and that has a value of -1, 0, or 1.</param>
-    /// <param name="isGrounded">Boolean that is true when a player is touching the ground.</param>
-    void Animation(float h, bool isGrounded)
+    void Animation(float h)
     {
-        anim.SetBool("Walking", h != 0 && isGrounded);
-        anim.SetBool("Jumping", !isGrounded);
+        anim.SetBool("Walking", h != 0 && IsGrounded());
+        anim.SetBool("Jumping", !IsGrounded());
     }
 
     /// <summary>
@@ -201,17 +193,8 @@ public class Player : MonoBehaviour
     /// </summary>
     void Shoot()
     {
-        bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletPlayer");
-        Transform shootPoint;
+        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletPlayer");
         
-        if (sr.flipX == false)
-        {
-            shootPoint = shootPointRight;
-        }
-        else
-        {
-            shootPoint = shootPointLeft;
-        }
         timeLastShoot = Time.time;
         
         if (bullet != null)

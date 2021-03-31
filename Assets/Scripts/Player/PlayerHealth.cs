@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Player health script. It is common both when you are on foot and when you are flying.
+/// Player health class. It is common both when you are on foot and when you are flying.
 /// </summary>
 public class PlayerHealth : MonoBehaviour
 {
@@ -21,17 +20,13 @@ public class PlayerHealth : MonoBehaviour
     GameObject explosion;
 
     [Header("Components")]
-    AudioSource audioSource;
-    Rigidbody2D rb;
-    Animator anim;
+    [SerializeField] AudioSource audioSource = null;
+    [SerializeField] Animator anim = null;
     #endregion
 
     void Start()
     {
         health = maxHealth;
-        audioSource = GetComponent<AudioSource>();
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -43,16 +38,13 @@ public class PlayerHealth : MonoBehaviour
             audioSource.Play();
             isHurt = false;
         }
+
         else
         {
             hurtImage.color = Color.Lerp(hurtImage.color, Color.clear, 10.0f * Time.deltaTime);
         }
     }
 
-    /// <summary>
-    /// Function we call when a collision occurs.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -66,10 +58,6 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Function we call when a trigger collision occurs.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Sword"))
@@ -127,6 +115,7 @@ public class PlayerHealth : MonoBehaviour
     void RestoreHealth(float restoredHealth)
     {
         health += restoredHealth;
+
         fullBattery.fillAmount = (health / maxHealth);
         {
             if (health > maxHealth)
@@ -147,15 +136,14 @@ public class PlayerHealth : MonoBehaviour
         if (GetComponent<Player>() != null)
         {
             GetComponent<Player>().enabled = true;
-            GetComponent<Player>().armLeft.SetActive(true);
-            GetComponent<Player>().armRight.SetActive(true);
-
+            GetComponent<Player>().arm.SetActive(true);
+            GetComponent<Player>().inPlatform = false;
         }
+
         else
         {
             GetComponent<FlyingPlayer>().enabled = true;
-            GetComponent<FlyingPlayer>().armLeft.SetActive(false);
-            GetComponent<FlyingPlayer>().armRight.SetActive(false);
+            GetComponent<FlyingPlayer>().arm.SetActive(true);
         }
 
         RestoreHealth(maxHealth);
@@ -171,15 +159,19 @@ public class PlayerHealth : MonoBehaviour
         {
             anim.SetTrigger("Dying1");
         }
+
         else if (isType2)
         {
             anim.SetTrigger("Dying2");
         }
-        GetComponent<Player>().armLeft.SetActive(false);
-        GetComponent<Player>().armRight.SetActive(false);
+
+        GetComponent<Player>().arm.SetActive(false);
         GetComponent<Player>().enabled = false;
+
         yield return new WaitForSeconds(2);
+
         explosion = ObjectPooler.SharedInstance.GetPooledObject("Explosion");
+        
         if (explosion != null)
         {
             explosion.SetActive(true);
@@ -198,8 +190,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator DieFlying()
     {
         anim.SetTrigger("Dying3");
-        GetComponent<FlyingPlayer>().armLeft.SetActive(false);
-        GetComponent<FlyingPlayer>().armRight.SetActive(false);
+        GetComponent<FlyingPlayer>().arm.SetActive(false);
         GetComponent<FlyingPlayer>().enabled = false;
         yield return new WaitForSeconds(2);
         explosion = ObjectPooler.SharedInstance.GetPooledObject("Explosion");

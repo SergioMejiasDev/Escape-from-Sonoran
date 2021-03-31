@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// Script that will be assigned the bullets, both the player's and the enemies'.
+/// Class that will be assigned the bullets, both the player's and the enemies'.
 /// </summary>
 public class Bullet : MonoBehaviour
 {
@@ -17,10 +15,6 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector2.right * speed * Time.deltaTime);       
     }
 
-    /// <summary>
-    /// Function we call if the bullet has a trigger collision.
-    /// </summary>
-    /// <param name="collision">The object that it collides with.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (destroyOnGround)
@@ -41,7 +35,7 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        if (!enemyBullet)
+        else if (!enemyBullet)
         {
             if (collision.gameObject.CompareTag("Borders"))
             {

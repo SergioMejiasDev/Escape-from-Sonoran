@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script associated with the type 2 enemy (green color, walks and melee attacks).
+/// Class associated with the type 2 enemy (green color, walks and melee attacks).
 /// </summary>
 public class EnemyClass2 : MonoBehaviour
 {
@@ -18,48 +17,41 @@ public class EnemyClass2 : MonoBehaviour
     float timeLastAttack;
     [SerializeField] float cadency = 0.85f;
     GameObject player;
-    [SerializeField] GameObject attackPointLeft = null;
-    [SerializeField] GameObject attackPointRight = null;
-    GameObject hurt;
+    [SerializeField] GameObject attackPoint = null;
 
     [Header("Health")]
     [SerializeField] int health = 5;
     GameObject explosion;
 
     [Header("Components")]
-    Animator anim;
-    SpriteRenderer sr;
-    AudioSource audioSource;
+    [SerializeField] Animator anim = null;
+    [SerializeField] AudioSource audioSource = null;
     #endregion
 
     void Start()
     {
         startingPosition = transform.position;
-        sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
-        attackPointLeft.SetActive(false);
-        attackPointRight.SetActive(false);
+        attackPoint.SetActive(false);
     }
 
     void Update()
     {
         if (direction == 1)
         {
-            sr.flipX = false;
-            hurt = attackPointRight;
-        }
-        else
-        {
-            sr.flipX = true;
-            hurt = attackPointLeft;
+            transform.localScale = new Vector3(0.5f, 0.5f, 1f);
         }
 
-        if ((player.activeSelf == true) && (Vector3.Distance(transform.position, player.transform.position) < 3))
+        else
+        {
+            transform.localScale = new Vector3(-0.5f, 0.5f, 1f);
+        }
+
+        if ((player.activeSelf) && (Vector3.Distance(transform.position, player.transform.position) < 3))
         {
             Attack();
         }
+
         else
         {
             Movement();
@@ -68,16 +60,13 @@ public class EnemyClass2 : MonoBehaviour
         Animation();
     }
 
-    /// <summary>
-    /// Function called when the enemy comes into contact with a trigger collider.
-    /// </summary>
-    /// <param name="other">The object that it collides with.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if ((other.gameObject.CompareTag("BulletPlayer")))
         {
             other.gameObject.SetActive(false);
             health -= 1;
+
             if (health <= 0)
             {
                 explosion = ObjectPooler.SharedInstance.GetPooledObject("Explosion");
@@ -87,6 +76,7 @@ public class EnemyClass2 : MonoBehaviour
                     explosion.transform.position = transform.position;
                     explosion.transform.rotation = transform.rotation;
                 }
+
                 Destroy(gameObject);
             }
         }
@@ -111,6 +101,7 @@ public class EnemyClass2 : MonoBehaviour
         {
             direction = -1;
         }
+
         else if (player.transform.position.x > transform.position.x)
         {
             direction = 1;
@@ -119,9 +110,9 @@ public class EnemyClass2 : MonoBehaviour
         if (Time.time - timeLastAttack > cadency)
         {
             timeLastAttack = Time.time;
-            hurt.SetActive(true);
+            attackPoint.SetActive(true);
             audioSource.Play();
-            StartCoroutine(DestroyAttack(hurt));
+            StartCoroutine(DestroyAttack());
         }
     }
 
@@ -130,7 +121,7 @@ public class EnemyClass2 : MonoBehaviour
     /// </summary>
     void Animation()
     {
-        anim.SetBool("Attack", ((player.activeSelf == true) && (Vector3.Distance(transform.position, player.transform.position) < 3)));
+        anim.SetBool("Attack", ((player.activeSelf) && (Vector3.Distance(transform.position, player.transform.position) < 3)));
     }
 
     /// <summary>
@@ -142,6 +133,7 @@ public class EnemyClass2 : MonoBehaviour
         {
             direction = -1;
         }
+
         else if ((transform.position.x) < startingPosition.x - movementDistance)
         {
             direction = 1;
@@ -151,9 +143,8 @@ public class EnemyClass2 : MonoBehaviour
     /// <summary>
     /// Corroutine that causes the GameObject that damages the enemy to be destroyed.
     /// </summary>
-    /// <param name="attackPoint">Site where the object that damages the enemy is instantiated.</param>
     /// <returns></returns>
-    IEnumerator DestroyAttack(GameObject attackPoint)
+    IEnumerator DestroyAttack()
     {
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);

@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that takes care of the credits scene.
+/// Class that takes care of the credits scene.
 /// </summary>
 public class Credits : MonoBehaviour
 {
@@ -19,6 +18,7 @@ public class Credits : MonoBehaviour
         GameManager.gameManager.ChangeCursor(false);
         GameManager.gameManager.InitialFade();
         GameManager.gameManager.ActivateMusic();
+
         StartCoroutine(CreditsMovement());
     }
 
@@ -64,6 +64,7 @@ public class Credits : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2);
+
         StartCoroutine(CloseCredits());
     }
 

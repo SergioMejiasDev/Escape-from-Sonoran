@@ -562,9 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: (Press ESC to skip)
-  spanish: (Pulsa ESC para omitir)
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: 180e14d8e494aeb4e99ea676265f6ea8, type: 2}
 --- !u!1001 &174539929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -848,18 +846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: One day, tired of being in the service of the terrorist group that created
-    them, the war machines rebelled against humanity, causing a revolt that reached
-    a worldwide magnitude.\n\nThey began a war against the humans, which had the
-    support of the assistance robots.\n\nThe battle was long, ending with the victory
-    of the war machines and giving rise to a new authoritarian government.
-  spanish: "Un d\xEDa, cansadas de estar al servicio del grupo terrorista que las
-    cre\xF3, las m\xE1quinas de guerra se rebelaron contra la humanidad, provocando
-    una revuelta que alzanz\xF3 una magnitud mundial.\\n\\nComenzaron una guerra
-    contra los humanos, los cuales contaban con el apoyo de los robots de asistencia.\\n\\nLa
-    batalla fue larga, terminando con la victoria de las m\xE1quinas de guerra y
-    dando lugar a un nuevo gobierno autoritario."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: a6bdd344754aceb42b35efaebd2e045d, type: 2}
 --- !u!1 &281432706
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,9 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: Our adventure begins here.
-  spanish: "Aqu\xED es donde empieza nuestra aventura."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: 5599d14d112c07d4b8479121c37657e7, type: 2}
 --- !u!4 &296572297 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2125495005472656048, guid: b58f91bc6dc0d8045a036b5fb16ca27e,
@@ -4056,7 +4041,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &605527556
 MonoBehaviour:
@@ -4228,18 +4213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: Sonoran had been taken over by these new foes, keeping the assist robots
-    secluded for their support of humans, and forcing them to work against their
-    will for ends far beyond ethical limits.\nHowever, Seruel-700, the robot that
-    led the support for the humans, would not give up so easily. As long as he had
-    the energy to continue, he would end the tyranny of the war machines.
-  spanish: "Sonora hab\xEDa sido tomado por estos nuevos enemigos, manteniendo reclu\xEDdos
-    a los robots de asistencia por su apoyo a los humanos, y oblig\xE1ndolos a trabajar
-    en contra de su voluntad para fines bastante alejados de los l\xEDmites \xE9ticos.\\n\\nSin
-    embargo, Seruel-700, robot que lider\xF3 el apoyo a los humanos, no se rendir\xEDa
-    tan f\xE1cilmente. Mientras tuviera energ\xEDas para continuar, acabar\xEDa con
-    la tiran\xEDa de las m\xE1quinas de guerra."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: a3d927b53b16fb14e9a225322f3571e7, type: 2}
 --- !u!1 &632905978 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 222117892885316471, guid: c7adcb8ef69444f46b710ea245cd7253,
@@ -5096,9 +5070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: Year 2073.\n\nSonoran Desert, Arizona, USA.
-  spanish: "A\xF1o 2073.\\n\\nDesierto de Sonora, Arizona, EEUU."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: 0242310154ee6f64f8a5d767682b06e8, type: 2}
 --- !u!1 &1050434975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5428,7 +5400,7 @@ Transform:
   m_Children:
   - {fileID: 1532386385}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1163664679
 PrefabInstance:
@@ -5694,7 +5666,7 @@ Transform:
   - {fileID: 2067313583}
   - {fileID: 834901723}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1252819885 stripped
 Transform:
@@ -5947,50 +5919,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8898491012723236841}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1437304436
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1437304438}
-  - component: {fileID: 1437304437}
-  m_Layer: 0
-  m_Name: MultiLanguage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1437304437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437304436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b59e50f55713474db071eeeddacc8ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeLanguage: 0
---- !u!4 &1437304438
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437304436}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1444499897
 GameObject:
   m_ObjectHideFlags: 0
@@ -20428,7 +20356,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1664999596
 AudioSource:
@@ -23218,14 +23146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: The Sonoran workplace, named for being located under the sands of this
-    desert, had become one of the most technologically advanced places on the planet.\n\nThe
-    humans, aided by the assistive robots, had made all of this possible.
-  spanish: "El centro de trabajo de Sonora, llamado as\xED por ubicarse bajo las
-    arenas del mismo desierto, se hab\xEDa convertido en uno de los lugares m\xE1s
-    avanzados tecnol\xF3gicamente del planeta.\\n\\nLos humanos, ayudados por los
-    robots de asistencia, hab\xEDan hecho todo esto posible."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: 1159f614f3740994394c66b2f10a3c96, type: 2}
 --- !u!4 &1982030968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2755141528724058087, guid: 4df6362d2d2362049bbbb5a29846d411,
@@ -38381,9 +38302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: 'Chapter 1: The Battle Begins'
-  spanish: "Cap\xEDtulo 1: Comienza la batalla"
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: d721c8664843db9498d0753a794c094d, type: 2}
 --- !u!224 &2084739300 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6493446660559282653, guid: 869442643b3def54484772b38f747e00,
@@ -39972,7 +39891,7 @@ PrefabInstance:
     - target: {fileID: 6960731173537394663, guid: 3f681b45d8342f949b7df1ffa694ef8e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 6960731173537394663, guid: 3f681b45d8342f949b7df1ffa694ef8e,
         type: 3}
@@ -40053,7 +39972,7 @@ PrefabInstance:
     - target: {fileID: 8898491013278783049, guid: 3c635587c2df84148bb07bb9ea170b88,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8898491013278783049, guid: 3c635587c2df84148bb07bb9ea170b88,
         type: 3}

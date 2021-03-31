@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 8107471331864117561}
   - component: {fileID: 8107471331864117560}
   - component: {fileID: 8107471331864117563}
+  - component: {fileID: 6891550361882111372}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -209,6 +210,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6891550361882111372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107471331864117557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multilanguageText: {fileID: 11400000, guid: e8bb8ab51fb858945b7f6faad8d45718, type: 2}
 --- !u!1 &8107471331953206561
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +234,7 @@ GameObject:
   - component: {fileID: 8107471331953206566}
   - component: {fileID: 8107471331953206564}
   - component: {fileID: 8107471331953206567}
+  - component: {fileID: 8910038546070242336}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -289,6 +304,19 @@ MonoBehaviour:
   m_Text: "Vaya, vaya... \xBFQu\xE9 tenemos aqu\xED? As\xED que alguien intenta desobedecer
     nuestras ordenes y continuar por su cuenta. Solo eres una m\xE1quina obsoleta,
     tu lugar est\xE1 en esta f\xE1brica."
+--- !u!114 &8910038546070242336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107471331953206561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multilanguageText: {fileID: 0}
 --- !u!1 &8107471331974457952
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +404,7 @@ GameObject:
   - component: {fileID: 8107471332386038417}
   - component: {fileID: 8107471332386038423}
   - component: {fileID: 8107471332386038422}
+  - component: {fileID: 3469174325601856072}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -444,6 +473,19 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Ni se te ocurra acercarte a ese ascensor...\n\nO prep\xE1rate para afrontar
     las consecuencias."
+--- !u!114 &3469174325601856072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107471332386038416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multilanguageText: {fileID: 0}
 --- !u!1 &8107471332662696212
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,6 +650,7 @@ GameObject:
   - component: {fileID: 8107471333353493724}
   - component: {fileID: 8107471333353493727}
   - component: {fileID: 8107471333353493726}
+  - component: {fileID: 5238912492426431828}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -729,3 +772,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5238912492426431828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107471333353493720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multilanguageText: {fileID: 11400000, guid: e8bb8ab51fb858945b7f6faad8d45718, type: 2}

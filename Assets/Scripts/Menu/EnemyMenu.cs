@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// Script of the enemies that appear moving in the main menu.
+/// Class in charge of moving the enemies that appear in the main menu.
 /// </summary>
 public class EnemyMenu : MonoBehaviour
 {

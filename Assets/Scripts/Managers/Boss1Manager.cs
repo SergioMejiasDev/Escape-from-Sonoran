@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script that controls the specific functions of the first boss scene.
+/// Class that controls the specific functions of the first boss scene.
 /// </summary>
 public class Boss1Manager : MonoBehaviour
 {
@@ -13,9 +12,8 @@ public class Boss1Manager : MonoBehaviour
     [Header("Elevator")]
     [SerializeField] GameObject redButton = null;
     [SerializeField] GameObject greenButton = null;
-    [SerializeField] GameObject elevator = null;
-    Animator elevatorAnim;
-    AudioSource elevatorAudio;
+    [SerializeField] Animator elevatorAnim;
+    [SerializeField] AudioSource elevatorAudio;
     [SerializeField] AudioClip ring = null;
     [SerializeField] AudioClip doors = null;
     
@@ -29,16 +27,14 @@ public class Boss1Manager : MonoBehaviour
 
     [Header("Characters")]
     [SerializeField] GameObject player = null;
+    [SerializeField] Player playerClass = null;
     [SerializeField] GameObject enemy = null;
+    [SerializeField] EnemyBig enemyClass = null;
     #endregion
 
     void Start()
     {
         boss1Manager = this;
-        player.GetComponent<Player>().enabled = false;
-        enemy.GetComponent<EnemyBig>().enabled = false;
-        elevatorAnim = elevator.GetComponent<Animator>();
-        elevatorAudio = elevator.GetComponent<AudioSource>();
         GameManager.gameManager.InitialFade();
         GameManager.gameManager.StartDialogue(0);
     }
@@ -50,8 +46,8 @@ public class Boss1Manager : MonoBehaviour
     {
         GameManager.gameManager.CloseDialogue();
         GameManager.gameManager.ActivateMusic();
-        player.GetComponent<Player>().enabled = true;
-        enemy.GetComponent<EnemyBig>().enabled = true;
+        playerClass.enabled = true;
+        enemyClass.enabled = true;
         StartCoroutine(SpawnBattery());
     }
 

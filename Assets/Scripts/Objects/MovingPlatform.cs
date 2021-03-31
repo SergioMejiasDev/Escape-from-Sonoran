@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// Moving platforms script.
+/// Moving platforms class.
 /// </summary>
 public class MovingPlatform : MonoBehaviour
 {
@@ -23,15 +21,14 @@ public class MovingPlatform : MonoBehaviour
         if (!isVertical)
         {
             transform.Translate(Vector2.right * speed * direction * Time.deltaTime);
-
-            ChangeDirection();
         }
+
         else
         {
             transform.Translate(Vector2.up * speed * direction * Time.deltaTime);
-
-            ChangeDirection();
         }
+
+        ChangeDirection();
     }
 
     /// <summary>
@@ -45,6 +42,7 @@ public class MovingPlatform : MonoBehaviour
             {
                 direction = -1;
             }
+
             else if ((transform.position.x) < startingPosition.x - movementDistance)
             {
                 direction = 1;
@@ -57,6 +55,7 @@ public class MovingPlatform : MonoBehaviour
             {
                 direction = -1;
             }
+
             else if ((transform.position.y) < startingPosition.y - movementDistance)
             {
                 direction = 1;

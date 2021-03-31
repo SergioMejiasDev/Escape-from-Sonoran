@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 /// <summary>
-/// Script with the movement and attack functions assigned to the player when flying (chapter 3).
+/// Class with the movement and attack functions assigned to the player when flying (chapter 3).
 /// </summary>
 public class FlyingPlayer : MonoBehaviour
 {
@@ -15,24 +12,17 @@ public class FlyingPlayer : MonoBehaviour
     [Header("Shoot")]
     float timeLastShoot;
     [SerializeField] float cadency = 0.25f;
-    GameObject bullet;
-    Transform arm;
-    public GameObject armLeft;
-    public GameObject armRight;
-    [SerializeField] Transform shootPointLeft = null;
-    [SerializeField] Transform shootPointRight = null;
+    public GameObject arm;
+    [SerializeField] Transform shootPoint = null;
 
     [Header("Components")]
-    SpriteRenderer sr;
     Camera mainCamera;
     #endregion
 
     void Start()
     {
         mainCamera = Camera.main;
-        sr = GetComponent<SpriteRenderer>();
-        armLeft.SetActive(false);
-        armRight.SetActive(true);
+        arm.SetActive(true);
     }
 
     void Update()
@@ -88,21 +78,21 @@ public class FlyingPlayer : MonoBehaviour
 
         if (mousePos.x >= 0)
         {
-            sr.flipX = false;
-            armLeft.SetActive(false);
-            armRight.SetActive(true);
-            arm = armRight.transform;
-        }
-        else if (mousePos.x < 0)
-        {
-            sr.flipX = true;
-            armLeft.SetActive(true);
-            armRight.SetActive(false);
-            arm = armLeft.transform;
+            transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+            arm.transform.localScale = new Vector3(1f, 1f, 1f);
+
+            float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+            arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        arm.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        else if (mousePos.x < 0)
+        {
+            transform.localScale = new Vector3(-0.5f, 0.5f, 1f);
+            arm.transform.localScale = new Vector3(-1f, -1f, 1f);
+
+            float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+            arm.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     /// <summary>
@@ -110,17 +100,8 @@ public class FlyingPlayer : MonoBehaviour
     /// </summary>
     void Shoot()
     {
-        bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletPlayer");
-        Transform shootPoint;
+        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletPlayer");
 
-        if (sr.flipX == false)
-        {
-            shootPoint = shootPointRight;
-        }
-        else
-        {
-            shootPoint = shootPointLeft;
-        }
         timeLastShoot = Time.time;
 
         if (bullet != null)

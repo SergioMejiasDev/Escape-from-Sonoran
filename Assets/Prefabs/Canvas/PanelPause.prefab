@@ -146,9 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: Resume
-  spanish: Continuar
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: b42f6c00cce06ad44b72105c88fec6b1, type: 2}
 --- !u!1 &1959454281725767377
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,9 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: Back to menu
-  spanish: "Volver al men\xFA"
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: aafb936f490ddbb458a3fce5b2917329, type: 2}
 --- !u!1 &1959454282272707205
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,9 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: Restart level
-  spanish: Reiniciar nivel
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: e7f68dee2e45363458666bcd657afd3c, type: 2}
 --- !u!1 &1959454283008987576
 GameObject:
   m_ObjectHideFlags: 0

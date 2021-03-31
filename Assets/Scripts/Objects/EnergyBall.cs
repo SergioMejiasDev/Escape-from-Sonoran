@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Final Boss energy balls script.
+/// Final Boss energy balls class.
 /// </summary>
 public class EnergyBall : MonoBehaviour
 {
@@ -19,10 +18,6 @@ public class EnergyBall : MonoBehaviour
         transform.Translate(Vector2.right * speed * Time.deltaTime);      
     }
 
-    /// <summary>
-    /// Function we call when a collision occurs.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("BulletPlayer"))

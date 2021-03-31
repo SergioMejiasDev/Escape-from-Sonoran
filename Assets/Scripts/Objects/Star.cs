@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script of the star that launches the final boss.
+/// Class of the star that launches the final boss.
 /// </summary>
 public class Star : MonoBehaviour
 {
@@ -11,7 +10,6 @@ public class Star : MonoBehaviour
     float attackSpeed;
     int maxShoots;
     [SerializeField] GameObject[] cannons = null;
-
 
     void Start()
     {
@@ -23,10 +21,6 @@ public class Star : MonoBehaviour
         transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
     }
 
-    /// <summary>
-    /// Function we call when a trigger collision occurs.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("BulletPlayer"))
@@ -48,7 +42,6 @@ public class Star : MonoBehaviour
         }
 
         StartCoroutine(Shoot());
-
     }
 
     /// <summary>
@@ -67,10 +60,8 @@ public class Star : MonoBehaviour
 
         rotationSpeed = 25;
 
-
         while (currentShoots < maxShoots)
         {
-
             foreach (GameObject shootPoint in cannons)
             {
                 GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet4");
@@ -81,13 +72,11 @@ public class Star : MonoBehaviour
                     bullet.transform.rotation = shootPoint.transform.rotation;
                     bullet.SetActive(true);
                 }
-
             }
 
             currentShoots += 1;
 
             yield return new WaitForSeconds(attackSpeed);
-
         }
 
         currentShoots = 0; 
@@ -100,7 +89,6 @@ public class Star : MonoBehaviour
 
         while (currentShoots < maxShoots)
         {
-
             foreach (GameObject shootPoint in cannons)
             {
                 GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet4");
@@ -111,13 +99,11 @@ public class Star : MonoBehaviour
                     bullet.transform.rotation = shootPoint.transform.rotation;
                     bullet.SetActive(true);
                 }
-
             }
 
             currentShoots += 1;
 
             yield return new WaitForSeconds(attackSpeed);
-
         }
 
         currentShoots = 0;
@@ -130,7 +116,6 @@ public class Star : MonoBehaviour
 
         while (currentShoots < maxShoots)
         {
-
             foreach (GameObject shootPoint in cannons)
             {
                 GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet4");
@@ -151,12 +136,14 @@ public class Star : MonoBehaviour
         yield return new WaitForSeconds(2);
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
         boss.GetComponent<FinalBoss>().SelectAttack();
+        
         GameObject explosion = ObjectPooler.SharedInstance.GetPooledObject("Explosion");
         if (explosion != null)
         {
             explosion.SetActive(true);
             explosion.transform.position = transform.position;
         }
+
         Destroy(gameObject);
     }
 }

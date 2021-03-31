@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that controls the specific functions of the third boss scene.
+/// Class that controls the specific functions of the third boss scene.
 /// </summary>
 public class Boss3Manager : MonoBehaviour
 {
@@ -13,15 +12,14 @@ public class Boss3Manager : MonoBehaviour
 
     [Header("Explosion")]
     [SerializeField] GameObject whitePanel = null;
-    Image whiteImage;
+    [SerializeField] Image whiteImage = null;
     float fadeSpeed = 0.6f;
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource = null;
 
     [Header("Sky Fading")]
-    [SerializeField] GameObject bgImage = null;
     [SerializeField] GameObject sun = null;
     float sunSpeed = 0.25f;
-    SpriteRenderer bgsr;
+    [SerializeField] SpriteRenderer bgsr = null;
     float skyFadeSpeed = 0.01f;
 
     [Header("Battery Spawner")]
@@ -29,7 +27,9 @@ public class Boss3Manager : MonoBehaviour
 
     [Header("Characters")]
     [SerializeField] GameObject player = null;
+    [SerializeField] FlyingPlayer playerClass = null;
     [SerializeField] GameObject enemy = null;
+    [SerializeField] FinalBoss enemyClass = null;
 
     [Header("Narrative")]
     [SerializeField] Text[] narrativeTexts = null;
@@ -39,13 +39,8 @@ public class Boss3Manager : MonoBehaviour
     void Start()
     {
         boss3Manager = this;
-        player.GetComponent<FlyingPlayer>().enabled = false;
-        enemy.GetComponent<FinalBoss>().enabled = false;
         GameManager.gameManager.InitialFade();
         GameManager.gameManager.StartDialogue(0);
-        audioSource = GetComponent<AudioSource>();
-        whiteImage = whitePanel.GetComponent<Image>();
-        bgsr = bgImage.GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -57,8 +52,8 @@ public class Boss3Manager : MonoBehaviour
         GameManager.gameManager.ActivateMusic();
         StartCoroutine(Sun());
         StartCoroutine(SkyFade());
-        player.GetComponent<FlyingPlayer>().enabled = true;
-        enemy.GetComponent<FinalBoss>().enabled = true;
+        playerClass.enabled = true;
+        enemyClass.enabled = true;
         StartCoroutine(SpawnBattery());
     }
 
@@ -82,6 +77,7 @@ public class Boss3Manager : MonoBehaviour
         {
             player.SetActive(false);
         }
+
         whitePanel.SetActive(true);
         Color imageColor = whiteImage.color;
         float alphaValue;
@@ -114,6 +110,7 @@ public class Boss3Manager : MonoBehaviour
         {
             GameManager.gameManager.GameOver();
         }
+
         else
         {
             StartCoroutine(EndGame());
@@ -131,6 +128,7 @@ public class Boss3Manager : MonoBehaviour
             sun.transform.Translate(Vector2.down * sunSpeed * Time.deltaTime);
             yield return null;
         }
+
         Destroy(sun);
     }
 
@@ -214,6 +212,7 @@ public class Boss3Manager : MonoBehaviour
             {
                 Instantiate(battery, batterySpawnPoint, Quaternion.identity) ;
             }
+
             else
             {
                 yield break;

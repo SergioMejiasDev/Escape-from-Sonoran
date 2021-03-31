@@ -199,6 +199,8 @@ MonoBehaviour:
   offSwitch: {fileID: 4953126756978688049}
   door: {fileID: 0}
   restart: 0
+  audioSource: {fileID: 4953126755978860193}
+  switchCollider: {fileID: 4953126755978860192}
 --- !u!61 &4953126755978860192
 BoxCollider2D:
   m_ObjectHideFlags: 0

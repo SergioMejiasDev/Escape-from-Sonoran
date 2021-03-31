@@ -1,18 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// Explosive boxes script.
+/// Explosive boxes class.
 /// </summary>
 public class TNT : MonoBehaviour
 {
     GameObject explosion;
 
-    /// <summary>
-    /// Function called when a collision occurs.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -27,6 +21,7 @@ public class TNT : MonoBehaviour
             Boss2Manager.boss2Manager.RespawnTNT();
             Destroy(gameObject);
         }
+
         else if (collision.gameObject.CompareTag("Enemy"))
         {
             explosion = ObjectPooler.SharedInstance.GetPooledObject("Explosion");

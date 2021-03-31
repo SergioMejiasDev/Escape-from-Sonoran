@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that controls the main functions of the second boss.
+/// Class that controls the main functions of the second boss.
 /// </summary>
 public class Dog : MonoBehaviour
 {
@@ -17,8 +16,7 @@ public class Dog : MonoBehaviour
     [Header("Attack")]
     GameObject player;
     GameObject bullet;
-    [SerializeField] Transform leftCannon = null;
-    [SerializeField] Transform rightCannon = null;
+    [SerializeField] Transform cannon = null;
     float timeLastShoot;
     [SerializeField] float cadency = 1.5f;
 
@@ -29,14 +27,11 @@ public class Dog : MonoBehaviour
     [SerializeField] GameObject explosion = null;
 
     [Header("Components")]
-    SpriteRenderer sr;
-    Animator anim;
+    [SerializeField] Animator anim = null;
     #endregion
 
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
         health = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player");
         startingPosition = transform.position;
@@ -44,7 +39,7 @@ public class Dog : MonoBehaviour
 
     void Update()
     {
-        if (player.activeSelf == true)
+        if (player.activeSelf)
         {
             Movement();
 
@@ -60,7 +55,6 @@ public class Dog : MonoBehaviour
             anim.SetBool("IsIddle", true);
             direction = 0;
         }
-
     }
 
     /// <summary>
@@ -80,6 +74,7 @@ public class Dog : MonoBehaviour
         {
             direction = -1;
         }
+
         else if ((transform.position.x) < startingPosition.x - 13)
         {
             direction = 1;
@@ -87,11 +82,12 @@ public class Dog : MonoBehaviour
 
         if ((player.transform.position.x) > (transform.position.x))
         {
-            sr.flipX = true;
+            transform.localScale = new Vector3(-0.9f, 0.9f, 1f);
         }
+
         else
         {
-            sr.flipX = false;
+            transform.localScale = new Vector3(0.9f, 0.9f, 1f);
         }
     }
 
@@ -100,35 +96,23 @@ public class Dog : MonoBehaviour
     /// </summary>
     void Point()
     {
-        if (sr.flipX == false)
+        Vector3 dir = player.transform.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        cannon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        if (Time.time - timeLastShoot > cadency)
         {
-            Vector3 dir = player.transform.position - transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            leftCannon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            if (Time.time - timeLastShoot > cadency)
-            {
-                Shoot(leftCannon);
-            }
-        }
-        else
-        {
-            Vector3 dir = player.transform.position - transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            rightCannon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            if (Time.time - timeLastShoot > cadency)
-            {
-                Shoot(rightCannon);
-            }
+            Shoot();
         }
     }
 
     /// <summary>
     /// Feature that makes the enemy constantly shoot the player.
     /// </summary>
-    /// <param name="cannon">Indicates which shoot point the enemy will use, the one on the right or the one on the left.</param>
-    void Shoot(Transform cannon)
+    void Shoot()
     {
         bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletEnemy");
+        
         if (bullet != null)
         {
             bullet.transform.position = cannon.position;
@@ -170,10 +154,12 @@ public class Dog : MonoBehaviour
     {
         anim.SetTrigger("Dying");
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("BulletEnemy");
+
         for (int i = 0; i < bullets.Length; i++)
         {
             bullets[i].SetActive(false);
         }
+
         GetComponent<Dog>().enabled = false;
         yield return new WaitForSeconds(2);
         Instantiate(explosion, transform.position, transform.rotation);

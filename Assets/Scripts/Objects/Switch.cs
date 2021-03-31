@@ -1,30 +1,23 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script of the switches that open doors.
+/// Class of the switches that open doors.
 /// </summary>
 public class Switch : MonoBehaviour
 {
     [SerializeField] GameObject offSwitch = null;
     [SerializeField] GameObject door = null;
     [SerializeField] bool restart = false;
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource = null;
     AudioSource doorAudioSource;
-    BoxCollider2D switchCollider;
+    [SerializeField] BoxCollider2D switchCollider = null;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         doorAudioSource = door.GetComponent<AudioSource>();
-        switchCollider = GetComponent<BoxCollider2D>();
     }
 
-    /// <summary>
-    /// Function we call when there is a trigger collision.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("BulletPlayer"))

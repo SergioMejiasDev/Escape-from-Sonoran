@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawn: {fileID: 5108216813298478941}
+  audioSource: {fileID: 6052921401786922507}
   splatter: {fileID: 6260345736778317562, guid: 8fd65ab395a393045938773553366d16,
     type: 3}
 --- !u!82 &6052921401786922507

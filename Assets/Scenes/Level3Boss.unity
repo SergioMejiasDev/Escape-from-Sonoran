@@ -153,6 +153,11 @@ PrefabInstance:
       propertyPath: batterySound
       value: 
       objectReference: {fileID: 8300000, guid: 9f4d6d2ce735d77488cecd154158a28f, type: 3}
+    - target: {fileID: 4449271837504254386, guid: 197a1e802c1417c49a0afe7f16b76e9b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6915224159753152880, guid: 197a1e802c1417c49a0afe7f16b76e9b,
         type: 3}
       propertyPath: speed
@@ -163,6 +168,11 @@ PrefabInstance:
       propertyPath: hurtImage
       value: 
       objectReference: {fileID: 3607844967427220680}
+    - target: {fileID: 6915224159753152880, guid: 197a1e802c1417c49a0afe7f16b76e9b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6915224159753152880, guid: 197a1e802c1417c49a0afe7f16b76e9b,
         type: 3}
       propertyPath: fullBattery
@@ -176,7 +186,7 @@ PrefabInstance:
     - target: {fileID: 6915224159753152884, guid: 197a1e802c1417c49a0afe7f16b76e9b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6915224159753152884, guid: 197a1e802c1417c49a0afe7f16b76e9b,
         type: 3}
@@ -240,6 +250,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 197a1e802c1417c49a0afe7f16b76e9b, type: 3}
+--- !u!114 &65593694 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6915224159753152880, guid: 197a1e802c1417c49a0afe7f16b76e9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 65593693}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393141568}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6a6e4fd4281884fbf54df6425567b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &130321131
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &169364523
 GameObject:
@@ -1005,7 +1027,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.7545118, y: 4.6614113}
+  m_Offset: {x: -1.149544, y: 4.6614113}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1016,7 +1038,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3179674, y: 2.693079}
+  m_Size: {x: 1.1080317, y: 2.693079}
   m_EdgeRadius: 0
 --- !u!61 &294203720
 BoxCollider2D:
@@ -1031,7 +1053,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.0661542, y: -5.6022305}
+  m_Offset: {x: -1.8356907, y: -5.458191}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1042,52 +1064,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5229621, y: 1.8091383}
+  m_Size: {x: 1.0620351, y: 2.0972176}
   m_EdgeRadius: 0
---- !u!1 &350435816
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 350435818}
-  - component: {fileID: 350435817}
-  m_Layer: 0
-  m_Name: MultiLanguage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &350435817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350435816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b59e50f55713474db071eeeddacc8ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeLanguage: 0
---- !u!4 &350435818
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350435816}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &371309320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1099,7 @@ Transform:
   - {fileID: 1066112400}
   - {fileID: 1564756977}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &393141568 stripped
 GameObject:
@@ -1339,7 +1317,7 @@ Transform:
   m_Children:
   - {fileID: 402336755}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &666933980
 MonoBehaviour:
@@ -1527,7 +1505,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &791580682
 PrefabInstance:
@@ -1544,7 +1522,7 @@ PrefabInstance:
     - target: {fileID: 3405615918624509706, guid: ed0640bbe6a8487469e6fcbe9f301b00,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3405615918624509706, guid: ed0640bbe6a8487469e6fcbe9f301b00,
         type: 3}
@@ -1626,7 +1604,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &922176866
 PrefabInstance:
@@ -2054,11 +2032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: I see you are stupid enough to carry on.\n\nSoon you will be a piece of
-    junk that no one will remember. Prepare to fight.
-  spanish: "Veo que eres lo bastante est\xFApido como para continuar.\\n\\nPronto
-    ser\xE1s un trozo de chatarra al que nadie recordar\xE1. Prep\xE1rate para luchar."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: 61308e3f841dcd343aeab2740f56ec06, type: 2}
 --- !u!1 &1066112398
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,9 +2304,9 @@ GameObject:
   - component: {fileID: 1247207630}
   - component: {fileID: 1247207629}
   - component: {fileID: 1247207631}
-  - component: {fileID: 1247207632}
   - component: {fileID: 1247207633}
   - component: {fileID: 1247207634}
+  - component: {fileID: 1247207632}
   m_Layer: 0
   m_Name: FinalBoss
   m_TagString: Boss
@@ -2409,7 +2383,7 @@ Transform:
   - {fileID: 169364524}
   - {fileID: 294203718}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1247207631
 Animator:
@@ -2430,8 +2404,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &1247207632
-BoxCollider2D:
+--- !u!70 &1247207632
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2443,19 +2417,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.0237021, y: -0.30283833}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4333679, y: 0.6841585}
-    oldSize: {x: 5.5, y: 12.041259}
-    newSize: {x: 5.5, y: 12.05126}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.0985155, y: 9.077578}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.91382384, y: -0.57544565}
+  m_Size: {x: 4.4053054, y: 8.757152}
+  m_Direction: 0
 --- !u!114 &1247207633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2483,6 +2447,7 @@ MonoBehaviour:
   centerRefence: {fileID: 169364524}
   star: {fileID: 1842898394354625991, guid: bafdc29ade0728b428712d4bb1983005, type: 3}
   redBall: {fileID: 1210901372}
+  anim: {fileID: 1247207631}
 --- !u!50 &1247207634
 Rigidbody2D:
   serializedVersion: 4
@@ -2600,12 +2565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: However, the war machines are still in command, and it was necessary for
-    someone to end their reign of terror.\n\n\nThe battle is not over yet.
-  spanish: "Sin embargo, las m\xE1quinas de guerra segu\xEDan al mando, y era necesario
-    que alguien acabara con su reinado del terror.\\n\\n\\nLa batalla a\xFAn no hab\xEDa
-    terminado."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: 91f13589f0df7c14a8ae0d9379881dad, type: 2}
 --- !u!1001 &1436502811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2808,7 +2768,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1564756975
 GameObject:
@@ -3034,7 +2994,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1753216025
 GameObject:
@@ -3193,9 +3153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: Continue
-  spanish: Continuar
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: e8bb8ab51fb858945b7f6faad8d45718, type: 2}
 --- !u!1 &1767837913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,7 +3302,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1949480192
 MonoBehaviour:
@@ -3397,11 +3355,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whitePanel: {fileID: 1767837913}
-  bgImage: {fileID: 1066112398}
+  whiteImage: {fileID: 1767837915}
+  audioSource: {fileID: 1949480195}
   sun: {fileID: 941395306}
+  bgsr: {fileID: 1066112399}
   battery: {fileID: 8868895189602255907, guid: 3af5eb72f7b8e8745b882049695d659d, type: 3}
   player: {fileID: 393141568}
+  playerClass: {fileID: 65593694}
   enemy: {fileID: 1247207628}
+  enemyClass: {fileID: 1247207633}
   narrativeTexts:
   - {fileID: 6863142431528608923}
   - {fileID: 1276852827}
@@ -4176,11 +4138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: The guardians had been defeated.\n\n\nSeruel-700 had escaped the power
-    of the war machines and Sonoran was a thing of the past.
-  spanish: "Los guardianes hab\xEDan sido derrotados.\\n\\n\\nSeruel-700 hab\xEDa
-    escapado del poder de las m\xE1quinas de guerra y Sonora ya era cosa del pasado."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: 8c5b590aad9c4bb46b99f43ed64ab0a1, type: 2}
 --- !u!114 &8107471331621459344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4338,9 +4296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: Continue
-  spanish: Continuar
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: e8bb8ab51fb858945b7f6faad8d45718, type: 2}
 --- !u!224 &8107471331698234642
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4591,13 +4547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: I do not understand what has led you to support them in the war. You still
-    have time to repent and go back to your work.\n\nThose guardians you fought with
-    were incompetent, I will not make it so easy for you.
-  spanish: "No entiendo qu\xE9 te ha llevado a apoyarlos en la guerra. Est\xE1s a
-    tiempo de arrepentirte y volver a tu trabajo.\\n\\nEsos guardianes a los que
-    has derrotado eran unos incompetentes, yo no te lo pondr\xE9 tan f\xE1cil."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: d3c5f93664021dc4683c434a47d08eae, type: 2}
 --- !u!222 &8107471332927040296
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4831,9 +4781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: Continue
-  spanish: Continuar
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: e8bb8ab51fb858945b7f6faad8d45718, type: 2}
 --- !u!114 &8107471333157020776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4931,13 +4879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: You wouldn't think that you could escape from here so easily, right?\n\nYou
-    are fighting for a lost cause. We were designed for battle, we are superior to
-    humans.
-  spanish: "\xBFNo pensar\xEDas que podr\xEDas escapar tan f\xE1cilmente, verdad?\\n\\nEst\xE1s
-    peleando por una causa perdida. Nosotros fuimos dise\xF1ados para la batalla,
-    somos superiores a los humanos."
-  menuText: 0
+  multilanguageText: {fileID: 11400000, guid: 982a4b5a450c92f4eab93b42ba628f06, type: 2}
 --- !u!222 &8107471333323932053
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5261,7 +5203,7 @@ RectTransform:
   - {fileID: 570573179}
   - {fileID: 1990208449}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

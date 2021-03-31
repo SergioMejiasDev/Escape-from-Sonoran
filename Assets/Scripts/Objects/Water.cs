@@ -1,25 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script that is assigned to the Empty Objects in the water to produce an effect on the player (damage and respawn).
+/// Class that is assigned to the Empty Objects in the water to produce an effect on the player (damage and respawn).
 /// </summary>
 public class Water : MonoBehaviour
 {
     [SerializeField] Transform respawn = null;
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource = null;
     [SerializeField] GameObject splatter = null;
 
-    private void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    /// <summary>
-    /// Function we call when a trigger collision occurs.
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -45,6 +35,7 @@ public class Water : MonoBehaviour
             player.transform.position = respawn.position;
             player.transform.rotation = respawn.rotation;
         }
+
         player.GetComponent<PlayerHealth>().Hurt(2);
     }
 }

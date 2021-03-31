@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script that controls the specific functions of the first level.
+/// Class that controls the specific functions of the first level.
 /// </summary>
 public class Level1Manager : MonoBehaviour
 {
@@ -29,6 +28,7 @@ public class Level1Manager : MonoBehaviour
     void Start()
     {
         level1Manager = this;
+
         GameManager.gameManager.StartNarrative();
     }
 
@@ -69,10 +69,12 @@ public class Level1Manager : MonoBehaviour
         remainingEnemies -= 1;
 
         yield return new WaitForSeconds(2);
-        if (player.activeSelf == false)
+
+        if (!player.activeSelf)
         {
             yield break;
         }
+
         Instantiate(enemy2, enemiesSpawnZone.position, enemiesSpawnZone.rotation);
         warning.SetActive(false);
         remainingEnemies -= 1;
@@ -80,17 +82,21 @@ public class Level1Manager : MonoBehaviour
         yield return new WaitForSeconds(2);
         Instantiate(battery, batterySpawnZone.position, batterySpawnZone.rotation);
         yield return new WaitForSeconds(2);
-        if (player.activeSelf == false)
+
+        if (!player.activeSelf)
         {
             yield break;
         }
+
         Instantiate(enemy1, enemiesSpawnZone.position, enemiesSpawnZone.rotation);
         remainingEnemies -= 1;
         yield return new WaitForSeconds(4);
-        if (player.activeSelf == false)
+
+        if (!player.activeSelf)
         {
             yield break;
         }
+
         Instantiate(enemy1, enemiesSpawnZone.position, enemiesSpawnZone.rotation);
         remainingEnemies -= 1;
 
@@ -98,17 +104,20 @@ public class Level1Manager : MonoBehaviour
         Instantiate(battery, batterySpawnZone.position, batterySpawnZone.rotation);
 
         yield return new WaitForSeconds(6);
-        if (player.activeSelf == false)
+
+        if (!player.activeSelf)
         {
             yield break;
         }
+
         Instantiate(enemy3, enemiesSpawnZone.position, enemiesSpawnZone.rotation);
         remainingEnemies -= 1;
+
         StartCoroutine(VerifyEnemies());
     }
 
     /// <summary>
-    /// Corroutine that checks if there is an enemy on the scene.
+    /// Coroutine that checks if there is an enemy on the scene.
     /// </summary>
     /// <returns></returns>
     IEnumerator VerifyEnemies()
@@ -117,9 +126,10 @@ public class Level1Manager : MonoBehaviour
 
         while (true)
         {
-            if (player.activeSelf == false)
+            if (!player.activeSelf)
             {
                 GameObject[] batteries = GameObject.FindGameObjectsWithTag("Battery");
+                
                 if (batteries != null)
                 {
                     for (int i = 0; i < batteries.Length; i++)
@@ -127,6 +137,7 @@ public class Level1Manager : MonoBehaviour
                         Destroy(batteries[i]);
                     }
                 }
+
                 yield break;
             }
 
@@ -135,6 +146,7 @@ public class Level1Manager : MonoBehaviour
             if (aliveEnemies.Length == 0 && remainingEnemies == 0)
             {
                 StartCoroutine(OpenDoor(player));
+
                 yield break;
             }
 
@@ -152,10 +164,12 @@ public class Level1Manager : MonoBehaviour
         GameManager.gameManager.DeactivateMusic();
 
         yield return new WaitForSeconds(1);
-        if (player.activeSelf == false)
+        
+        if (!player.activeSelf)
         {
             yield break;
         }
+
         closedDoor.SetActive(false);
         openedDoor.SetActive(true);
         doorSource.Play();

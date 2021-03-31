@@ -1,23 +1,21 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script of the explosions that are generated when the player or the enemies die.
+/// Class of the explosions that are generated when the player or the enemies die.
 /// </summary>
 public class Explosion : MonoBehaviour
 {
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource = null;
 
     void OnEnable()
     {
-        audioSource = GetComponent<AudioSource>();
         audioSource.Play();
         StartCoroutine(DestroyExplosion());
     }
 
     /// <summary>
-    /// Corroutine where the explosion is destroyed.
+    /// Coroutine where the explosion is destroyed.
     /// </summary>
     /// <returns></returns>
     IEnumerator DestroyExplosion()

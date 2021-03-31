@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that controls the main functions of the first boss.
+/// Class that controls the main functions of the first boss.
 /// </summary>
 public class EnemyBig : MonoBehaviour
 {
@@ -16,10 +15,8 @@ public class EnemyBig : MonoBehaviour
     [Header("Attack")]
     GameObject player;
     GameObject bullet;
-    [SerializeField] GameObject cannonLeft = null;
-    [SerializeField] GameObject cannonRight = null;
-    [SerializeField] Transform shootPointLeft = null;
-    [SerializeField] Transform shootPointRight = null;
+    [SerializeField] GameObject cannon = null;
+    [SerializeField] Transform shootPoint = null;
     float timeLastShoot;
     [SerializeField] float cadency = 1.5f;
 
@@ -30,15 +27,12 @@ public class EnemyBig : MonoBehaviour
     [SerializeField] GameObject explosion = null;
 
     [Header("Components")]
-    SpriteRenderer sr;
-    Animator anim;
+    [SerializeField] Animator anim = null;
     EnemyBig enemyBigScript;
     #endregion
 
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
         health = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player");
         enemyBigScript = this;
@@ -46,23 +40,25 @@ public class EnemyBig : MonoBehaviour
 
     void Update()
     {
-        if (player.activeSelf == true)
+        if (player.activeSelf)
         {
             if (player.transform.position.x < transform.position.x)
             {
                 direction = -1;
-                Movement();
-                Point();
             }
+
             else
             {
                 direction = 1;
-                Movement();
-                Point();
             }
+
+            Movement();
+
+            Point();
 
             Animation();
         }
+
         else
         {
             direction = 0;
@@ -70,10 +66,6 @@ public class EnemyBig : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Function that is activated when a trigger collider comes into contact with the enemy.
-    /// </summary>
-    /// <param name="other">The object that collides with the enemy.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if ((other.gameObject.CompareTag("BulletPlayer")))
@@ -102,47 +94,35 @@ public class EnemyBig : MonoBehaviour
     /// </summary>
     void Point()
     {
-        GameObject cannon;
-        Transform shootPoint;
-
-
         if (direction == -1)
         {
-            sr.flipX = false;
-            cannonLeft.SetActive(true);
-            shootPoint = shootPointLeft;
-            cannon = cannonLeft;
-            cannonRight.SetActive(false);
-            Vector3 dir = transform.position - player.transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            cannon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.localScale = new Vector3(0.75f, 0.75f, 1f);
+            cannon.transform.localScale = new Vector3(1f, 1f, 1f);
         }
-        
+
         else
         {
-            sr.flipX = true;
-            cannonRight.SetActive(true);
-            shootPoint = shootPointRight;
-            cannon = cannonRight;
-            cannonLeft.SetActive(false);
-            Vector3 dir = player.transform.position - transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            cannon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.localScale = new Vector3(-0.75f, 0.75f, 1f);
+            cannon.transform.localScale = new Vector3(-1f, -1f, 1f);
         }
-        
+
+        Vector3 dir = transform.position - player.transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        cannon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
         if (Time.time - timeLastShoot > cadency)
         {
-            Shoot(shootPoint);
+            Shoot();
         }
     }
 
     /// <summary>
     /// Function that makes the enemy shoot constantly.
     /// </summary>
-    /// <param name="shootPoint">Where the enemy shoots from depending on whether they are looking left or right.</param>
-    void Shoot(Transform shootPoint)
+    void Shoot()
     {
         bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletEnemy");
+
         if (bullet != null)
         {
             bullet.transform.position = shootPoint.position;
@@ -173,8 +153,7 @@ public class EnemyBig : MonoBehaviour
         {
             bullets[i].SetActive(false);
         }
-        cannonLeft.SetActive(false);
-        cannonRight.SetActive(false);
+        cannon.SetActive(false);
         enemyBigScript.enabled = false;
         yield return new WaitForSeconds(2);
         Instantiate(explosion, transform.position, transform.rotation);

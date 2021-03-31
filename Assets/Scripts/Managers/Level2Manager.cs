@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script that controls the specific functions of the second level.
+/// Class that controls the specific functions of the second level.
 /// </summary>
 public class Level2Manager : MonoBehaviour
 {
@@ -23,9 +22,8 @@ public class Level2Manager : MonoBehaviour
     [Header("Elevator")]
     [SerializeField] GameObject redButton = null;
     [SerializeField] GameObject greenButton = null;
-    [SerializeField] GameObject elevator = null;
-    Animator elevatorAnim;
-    AudioSource elevatorAudio;
+    [SerializeField] Animator elevatorAnim = null;
+    [SerializeField] AudioSource elevatorAudio = null;
     [SerializeField] AudioClip ring = null;
     [SerializeField] AudioClip doors = null;
     #endregion
@@ -33,11 +31,10 @@ public class Level2Manager : MonoBehaviour
     void Start()
     {
         level2Manager = this;
+
         GameManager.gameManager.ChangeCursor(true);
         GameManager.gameManager.InitialFade();
         GameManager.gameManager.TextFading();
-        elevatorAnim = elevator.GetComponent<Animator>();
-        elevatorAudio = elevator.GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -78,23 +75,28 @@ public class Level2Manager : MonoBehaviour
         remainingEnemies -= 2;
 
         yield return new WaitForSeconds(3);
-        if (player.activeSelf == false)
+        
+        if (!player.activeSelf)
         {
             yield break;
         }
+
         Instantiate(enemy2, enemiesSpawnZone.position, enemiesSpawnZone.rotation);
         Instantiate(enemy3, enemiesSpawnZone.position, enemiesSpawnZone.rotation);
         remainingEnemies -= 2;
         warning.SetActive(false);
 
         yield return new WaitForSeconds(3);
-        if (player.activeSelf == false)
+
+        if (!player.activeSelf)
         {
             yield break;
         }
+
         Instantiate(enemy1, enemiesSpawnZone.position, enemiesSpawnZone.rotation);
         Instantiate(enemy3, enemiesSpawnZone.position, enemiesSpawnZone.rotation);
         remainingEnemies -= 2;
+
         StartCoroutine(VerifyEnemies());
     }
 
@@ -108,9 +110,10 @@ public class Level2Manager : MonoBehaviour
 
         while (true)
         {
-            if (player.activeSelf == false)
+            if (!player.activeSelf)
             {
                 GameObject[] batteries = GameObject.FindGameObjectsWithTag("Battery");
+
                 if (batteries != null)
                 {
                     for (int i = 0; i < batteries.Length; i++)
@@ -118,6 +121,7 @@ public class Level2Manager : MonoBehaviour
                         Destroy(batteries[i]);
                     }
                 }
+
                 yield break;
             }
 
@@ -126,6 +130,7 @@ public class Level2Manager : MonoBehaviour
             if (aliveEnemies.Length == 0 && remainingEnemies == 0)
             {
                 StartCoroutine(OpenElevator(player));
+
                 yield break;
             }
 
@@ -150,10 +155,12 @@ public class Level2Manager : MonoBehaviour
         elevatorAudio.clip = doors;
         elevatorAudio.Play();
         yield return new WaitForSeconds(1);
-        if (player.activeSelf == false)
+
+        if (!player.activeSelf)
         {
             yield break;
         }
+
         elevatorAnim.SetTrigger("BossDie");
         GameManager.gameManager.FinalFade();
         yield return new WaitForSeconds(2);

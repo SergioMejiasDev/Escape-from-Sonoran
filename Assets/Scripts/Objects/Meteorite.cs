@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -19,22 +18,21 @@ public class Meteorite : MonoBehaviour
         transform.Translate(Vector2.down * speed * Time.deltaTime);      
     }
 
-    /// <summary>
-    /// Function that we call if a trigger collision occurs..
-    /// </summary>
-    /// <param name="collision">Object of the collision.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerHealth>().Hurt(1);
+
             GameObject explosion = ObjectPooler.SharedInstance.GetPooledObject("Explosion");
+
             if (explosion != null)
             {
                 explosion.SetActive(true);
                 explosion.transform.position = transform.position;
                 explosion.transform.rotation = transform.rotation;
             }
+
             gameObject.SetActive(false);
         }
     }
@@ -48,5 +46,4 @@ public class Meteorite : MonoBehaviour
         yield return new WaitForSeconds(10);
         gameObject.SetActive(false);
     }
-
 }

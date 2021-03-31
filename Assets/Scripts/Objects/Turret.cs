@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// Automatic turrets script.
+/// Automatic turrets class.
 /// </summary>
 public class Turret : MonoBehaviour
 {
@@ -29,10 +27,6 @@ public class Turret : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Function we call when a trigger collision occurs.
-    /// </summary>
-    /// <param name="collision">Object with which it collides.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Water"))

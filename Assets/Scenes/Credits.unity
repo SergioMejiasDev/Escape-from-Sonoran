@@ -213,54 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: "Drawings by Sergio Mej\xEDas Mora\\n\\nSome Leavariox Studios assets
-    have been used (leavarioxstudios.com)"
-  spanish: "Dibujos por Sergio Mej\xEDas Mora\\n\\nSe han utilizado assets de Leavariox
-    Studios (leavarioxstudios.com)"
---- !u!1 &153758481
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 153758483}
-  - component: {fileID: 153758482}
-  m_Layer: 0
-  m_Name: MultiLanguage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &153758482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153758481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b59e50f55713474db071eeeddacc8ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeLanguage: 0
---- !u!4 &153758483
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153758481}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  multilanguageText: {fileID: 11400000, guid: 4788fdc0602633441a0cbe7d687d37b4, type: 2}
 --- !u!1 &308238134
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,8 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: TEXT FONT
-  spanish: FUENTE DE TEXTO
+  multilanguageText: {fileID: 11400000, guid: e92fcd90b72475340aa438d88384d884, type: 2}
 --- !u!1 &433829430
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,8 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: SOUNDTRACK
-  spanish: BANDA SONORA
+  multilanguageText: {fileID: 11400000, guid: bb89e08aa08b889488c317165ac11cdb, type: 2}
 --- !u!1 &552945809
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +677,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &618451344
 GameObject:
@@ -958,7 +909,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &750795115
 GameObject:
@@ -1135,21 +1086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: "Songs obtained from the Freesound online repository (freesound.org),
-    all licensed under CC BY-SA 3.0.\\n\\nLegend1060 - \"Sci-Fi Theme\"\\n\\nklavo1985
-    - \"Epic Dramatic Game Music For Online Menu\"\\n\\nFoolBoyMedia - \"Dramatic
-    Scroller\"\\n\\nMATRIXXX_ - \"The Battle Of Scorpio And Orion\"\\n\\nX3nus -
-    \"Virtual Relaxation\"\\n\\norangefreesounds - \"Amb - Ambient Music Loop\"\\n\\ntheojt
-    - \"Underground Ambient\"\\n\\ngeorgeae2 - \"Boss Theme\"\\n\\nValentinSosnitskiy
-    -  \"\u0414\u0456\u043B\u0435\u044F \u0431\u0430\u0433\u0430\u0442\u043E \u043D\u0435
-    \u0431\u0443\u0432\u0430\u0454\""
-  spanish: "Canciones obtenidas del repositorio online (freesound.org), todas con
-    licencia CC BY-SA 3.0.\\n\\nLegend1060 - \"Sci-Fi Theme\"\\n\\nklavo1985 - \"Epic
-    Dramatic Game Music For Online Menu\"\\n\\nFoolBoyMedia - \"Dramatic Scroller\"\\n\\nMATRIXXX_
-    - \"The Battle Of Scorpio And Orion\"\\n\\nX3nus - \"Virtual Relaxation\"\\n\\norangefreesounds
-    - \"Amb - Ambient Music Loop\"\\n\\ntheojt - \"Underground Ambient\"\\n\\ngeorgeae2
-    - \"Boss Theme\"\\n\\nValentinSosnitskiy -  \"\u0414\u0456\u043B\u0435\u044F
-    \u0431\u0430\u0433\u0430\u0442\u043E \u043D\u0435 \u0431\u0443\u0432\u0430\u0454\""
+  multilanguageText: {fileID: 11400000, guid: 66016d4c176a2d045bd941a11ac6661a, type: 2}
 --- !u!1 &901043699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,7 +1151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &980863784
 GameObject:
@@ -1399,12 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: "This project has been carried out as the final project of the Videogame
-    Creation course with Unity, organized by the EOI in Rinc\xF3n de la Victoria
-    (M\xE1laga)."
-  spanish: "Este proyecto ha sido realizado como trabajo final del curso de Desarrollo
-    de Videojuegos con Unity, organizado por la EOI en el Rinc\xF3n de la Victoria
-    (M\xE1laga)."
+  multilanguageText: {fileID: 11400000, guid: 19034da9b45640d47b9aa66b21494d18, type: 2}
 --- !u!1 &1265263375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,8 +1503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: THANK YOU SO MUCH FOR PLAYING
-  spanish: MUCHAS GRACIAS POR JUGAR
+  multilanguageText: {fileID: 11400000, guid: d882993b1a1ddea42a3999a64dda87eb, type: 2}
 --- !u!1 &1321700025
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,7 +1598,7 @@ RectTransform:
   - {fileID: 1311532167}
   - {fileID: 2110721457}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1765,8 +1696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: GRAPHIC DESIGN
-  spanish: "DISE\xD1O GR\xC1FICO"
+  multilanguageText: {fileID: 11400000, guid: 08f28cb872a9c1844a883f9999a36071, type: 2}
 --- !u!1 &1441684940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,7 +1741,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1441684943
 MonoBehaviour:
@@ -2088,8 +2018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: GAME PROGRAMMING AND\nDESIGN
-  spanish: "DISE\xD1O Y PROGRAMACI\xD3N DEL JUEGO"
+  multilanguageText: {fileID: 11400000, guid: 5e5cc742f178422468df702a941796fc, type: 2}
 --- !u!1 &2095433367
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,13 +2113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec46ba1850daa445be7d9b9e3558dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  english: "Special thanks to our teachers:\\n\\nAlberto Ruiz Aguilar\\nAlejandro
-    Dom\xEDnguez Mu\xF1oz\\nAlejandro Montero Vila\\nElena Blanes Fern\xE1ndez\\nFrancisco
-    Miguel G\xF3mez Garc\xEDa\\n\\nThis project would not have been possible without
-    you."
-  spanish: "Agradecimientos especiales a nuestros profesores:\\n\\nAlberto Ruiz Aguilar\\nAlejandro
-    Dom\xEDnguez Mu\xF1oz\\nAlejandro Montero Vila\\nElena Blanes Fern\xE1ndez\\nFrancisco
-    Miguel G\xF3mez Garc\xEDa\\n\\nEste proyecto no hubiera sido posible sin vosotros."
+  multilanguageText: {fileID: 11400000, guid: b271dfdd0d2b1264294087b86ce24d84, type: 2}
 --- !u!1 &2110721456
 GameObject:
   m_ObjectHideFlags: 0

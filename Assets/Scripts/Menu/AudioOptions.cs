@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
 /// <summary>
-/// Script from which the sound settings are configured.
+/// Class in charge of controlling sound settings.
 /// </summary>
 public class AudioOptions : MonoBehaviour
 {
@@ -18,6 +16,7 @@ public class AudioOptions : MonoBehaviour
     private void Start()
     {
         audioOptions = this;
+
         LoadOptions();
     }
 
@@ -31,33 +30,24 @@ public class AudioOptions : MonoBehaviour
     }
 
     /// <summary>
-    /// Function that saves sound settings in PlayerPrefs.
+    /// Function that saves sound settings.
     /// </summary>
     public void SaveOptions()
     {
-        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
-        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
-        PlayerPrefs.Save();
+        SaveManager.saveManager.musicVolume = musicVolume;
+        SaveManager.saveManager.sfxVolume = sfxVolume;
+        SaveManager.saveManager.SaveOptions();
     }
 
     /// <summary>
-    /// Function that loads the sound settings of the PlayerPrefs.
+    /// Function that loads the sound settings.
     /// </summary>
     void LoadOptions()
     {
-        if (PlayerPrefs.HasKey("MusicVolume"))
-        {
-            float musicVolumeLoaded = PlayerPrefs.GetFloat("MusicVolume");
-            musicSlider.value = musicVolumeLoaded;
-        }
-        
-        if (PlayerPrefs.HasKey("SFXVolume"))
-        {
-            float sfxVolumeLoaded = PlayerPrefs.GetFloat("SFXVolume");
-            sfxSlider.value = sfxVolumeLoaded;
-        }
+        float musicVolumeLoaded = SaveManager.saveManager.musicVolume;
+        musicSlider.value = musicVolumeLoaded;
+
+        float sfxVolumeLoaded = SaveManager.saveManager.sfxVolume;
+        sfxSlider.value = sfxVolumeLoaded;
     }
 }
-
-
-

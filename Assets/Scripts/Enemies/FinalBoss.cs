@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that controls the main functions of the third and last boss.
+/// Class that controls the main functions of the third and last boss.
 /// </summary>
 public class FinalBoss : MonoBehaviour
 {
@@ -59,7 +58,7 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] GameObject redBall = null;
 
     [Header("Components")]
-    Animator anim;
+    [SerializeField] Animator anim = null;
     FinalBoss finalBoss;
     #endregion
 
@@ -69,29 +68,30 @@ public class FinalBoss : MonoBehaviour
         cannonStartingRotation = cannon.transform.rotation;
         armStartingRotation = arm.transform.rotation;
         health = maxHealth;
-        anim = GetComponent<Animator>();
-        finalBoss = GetComponent<FinalBoss>();
+        finalBoss = this;
         SelectAttack();
     }
 
     void Update()
     {
-        if (moveCannon && (player.activeSelf == true))
+        if (moveCannon && player.activeSelf)
         {
             Vector3 dir = cannon.transform.position - player.transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             cannon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            
             if ((Time.time - timeLastShoot > cadency) && shoot0)
             {
                 Shoot(shootPointCannon);
             }
         }
+
         else
         {
             cannon.transform.rotation = cannonStartingRotation;
         }
 
-        if (moveArm && (player.activeSelf == true))
+        if (moveArm && player.activeSelf)
         {
             Vector3 dir = arm.transform.position - player.transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -99,15 +99,12 @@ public class FinalBoss : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Function we call when the enemy comes into contact with a trigger collider.
-    /// </summary>
-    /// <param name="collision">Object with which it collides.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("BulletPlayer"))
         {
             Hurt();
+
             collision.gameObject.SetActive(false);
         }
     }
@@ -126,7 +123,7 @@ public class FinalBoss : MonoBehaviour
             timeBetweenAttacks = 4;
         }
 
-        if (player.activeSelf == true)
+        if (player.activeSelf)
         {
             float randomValue = Random.value;
 
@@ -159,7 +156,9 @@ public class FinalBoss : MonoBehaviour
     void Hurt()
     {
         health -= 1;
+
         fullBattery.fillAmount -= (1 / maxHealth);
+        
         if (health <= 0)
         {
             StartCoroutine(Die());
@@ -184,6 +183,7 @@ public class FinalBoss : MonoBehaviour
     void Shoot(Transform shootPoint)
     {
         bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletEnemy");
+
         if (bullet != null)
         {
             bullet.transform.position = shootPoint.transform.position;
@@ -200,16 +200,21 @@ public class FinalBoss : MonoBehaviour
     void StopAttacks()
     {
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("BulletEnemy");
+
         for (int i = 0; i < bullets.Length; i++)
         {
             bullets[i].SetActive(false);
         }
+
         GameObject activeStar = GameObject.FindGameObjectWithTag("Star");
+
         if (activeStar != null)
         {
             Destroy(activeStar);
         }
+
         GameObject[] activeMissiles = GameObject.FindGameObjectsWithTag("Missile");
+
         if (activeMissiles != null)
         {
             for (int i = 0; i < activeMissiles.Length; i++)
@@ -217,7 +222,9 @@ public class FinalBoss : MonoBehaviour
                 activeMissiles[i].SetActive(false);
             }
         }
+
         GameObject[] activeMeteorites = GameObject.FindGameObjectsWithTag("Meteorite");
+
         if (activeMeteorites != null)
         {
             for (int i = 0; i < activeMeteorites.Length; i++)
@@ -225,7 +232,9 @@ public class FinalBoss : MonoBehaviour
                 activeMeteorites[i].SetActive(false);
             }
         }
+
         GameObject[] activeLasers = GameObject.FindGameObjectsWithTag("Bullet4");
+
         if (activeLasers != null)
         {
             for (int i = 0; i < activeLasers.Length; i++)
@@ -233,7 +242,6 @@ public class FinalBoss : MonoBehaviour
                 activeLasers[i].SetActive(false);
             }
         }
-
     }
 
     /// <summary>
@@ -335,6 +343,7 @@ public class FinalBoss : MonoBehaviour
                 yield return new WaitForSeconds(cadency2);
             }
         }
+
         SelectAttack();
     }
 
@@ -345,19 +354,23 @@ public class FinalBoss : MonoBehaviour
     IEnumerator AttackEnergyBall()
     {
         yield return new WaitForSeconds(timeBetweenAttacks);
+
         if (!mode2)
         {
             shoot0 = false;
             moveCannon = false;
         }
+
         moveArm = true;
         whiteBall.SetActive(true);
         yield return new WaitForSeconds(4);
         whiteBall.SetActive(false);
+
         if (health <= 0)
         {
             yield break;
         }
+
         Instantiate(energyBall, shootPointArm.position, shootPointArm.rotation);
         yield return new WaitForSeconds(7);
         moveArm = false;
@@ -381,6 +394,7 @@ public class FinalBoss : MonoBehaviour
         {
             maxShoots4 = 30;
         }
+
         else
         {
             maxShoots4 = 60;
@@ -423,6 +437,7 @@ public class FinalBoss : MonoBehaviour
                 yield return new WaitForSeconds(cadency4);
             }
         }
+
         yield return new WaitForSeconds(3);
 
         moveCannon = true;
